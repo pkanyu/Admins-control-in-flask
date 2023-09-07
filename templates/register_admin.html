@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+    <div class="register-container">
+        <h2>Admin Registration</h2>
+        <form action="/register_admin" method="post">
+            {{ form.hidden_tag() }}
+            <div class="input-group">
+                <label for="username">Username:</label>
+                {{ form.username }}
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                {{ form.password }}
+            </div>
+            <div class="input-group">
+                <label for="confirm">Confirm Password:</label>
+                {{ form.confirm }}
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

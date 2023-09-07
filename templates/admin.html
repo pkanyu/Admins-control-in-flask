@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Admin</h2>
+
+<h3>Add Role</h3>
+<form action="{{ url_for('add_role') }}" method="POST">
+    <input type="hidden" name="action" value="add_role">
+    <label for="role_name">Role Name:</label><br>
+    <input type="text" id="role_name" name="role_name"><br>
+    <label for="privileges">Privileges:</label><br>
+    <input type="checkbox" id="add_admins" name="privileges" value="add_admins">
+    <label for="add_admins">Add Admins</label><br>
+    <input type="checkbox" id="manage_categories" name="privileges" value="manage_categories">
+    <label for="manage_categories">Manage Categories</label><br>
+    <input type="checkbox" id="customer_support" name="privileges" value="customer_support">
+    <label for="customer_support">Customer Support</label><br>
+    <input type="submit" value="Add Role">
+</form>
+
+<h3>Assign Role</h3>
+<form method="POST"  action="{{ url_for('assign_role') }}" >
+    >
+    <input type="hidden" name="action" value="assign_role">
+    <label for="admin_username">Admin Username:</label><br>
+    <input type="text" id="admin_username" name="admin_username"><br>
+    <label for="role_id">Role ID:</label><br>
+    <select id="role_id" name="role_id">
+        {% for role in roles %}
+            <option value="{{ role.id }}">{{ role.name }}</option>
+        {% endfor %}
+    </select><br>
+    <input type="submit" value="Assign Role">
+</form>
+
+<h3>Deassign Role</h3>
+<form method="POST"  action="{{ url_for('deassign_role') }}" >
+    >
+    <input type="hidden" name="action" value="deassign_role">
+    <label for="admin_username">Admin Username:</label><br>
+    <input type="text" id="admin_username" name="admin_username"><br>
+    <input type="submit" value="Deassign Role">
+</form>
+
+<h3>Admins</h3>
+<table border="1">
+    <tr>
+        <th>Admin ID</th>
+        <th>Username</th>
+        <th>Role ID</th>
+    </tr>
+    {% for admin in admins %}
+        <tr>
+            <td>{{ admin.id }}</td>
+            <td>{{ admin.username }}</td>
+            <td>{{ admin.role_id }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
